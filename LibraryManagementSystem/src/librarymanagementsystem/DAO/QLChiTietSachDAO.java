@@ -15,7 +15,7 @@ public class QLChiTietSachDAO {
         ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM chitietsach";
+            String query = "SELECT * FROM library.chitietsach";
             ResultSet rs = DBChiTietSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -41,7 +41,7 @@ public class QLChiTietSachDAO {
         ArrayList<QLChiTietSachDTO> arrChiTietSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM chitietsach, LoaiSach WHERE chitietsach.maSach = LoaiSach.maSach";
+            String query = "SELECT * FROM library.chitietsach, library.LoaiSach WHERE chitietsach.maSach = LoaiSach.maSach";
             ResultSet rs = DBChiTietSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -75,7 +75,7 @@ public class QLChiTietSachDAO {
     
     public Boolean add(QLChiTietSachDTO chiTietSach){
         DBChiTietSach = new DBConnection();
-        Boolean check = DBChiTietSach.SQLUpdate("INSERT INTO chitietsach(IDSach, maSach, tinhTrang) "
+        Boolean check = DBChiTietSach.SQLUpdate("INSERT INTO library.chitietsach(IDSach, maSach, tinhTrang) "
                 + "VALUES ('"
                 + chiTietSach.getIDSach()+ "','"  
                 + chiTietSach.getMaSach()+ "','"  
@@ -85,14 +85,14 @@ public class QLChiTietSachDAO {
     }
     
      public Boolean del(String IDSach){
-        Boolean check = DBChiTietSach.SQLUpdate("DELETE FROM chitietsach WHERE chitietsach.IDSach = '" + IDSach + "';");
+        Boolean check = DBChiTietSach.SQLUpdate("DELETE FROM library.chitietsach WHERE chitietsach.IDSach = '" + IDSach + "';");
         DBChiTietSach.closeConnection();
         return check;
     }
     
     public Boolean mod(QLChiTietSachDTO chiTietSach){
         DBChiTietSach = new DBConnection();
-        Boolean check = DBChiTietSach.SQLUpdate("Update chitietsach Set "
+        Boolean check = DBChiTietSach.SQLUpdate("Update library.chitietsach Set "
                 + " maSach='" + chiTietSach.getMaSach()
                 + "', tinhTrang='" + chiTietSach.getTinhTrang()
                 + "' where IDSach='" + chiTietSach.getIDSach()+ "';");

@@ -15,7 +15,7 @@ public class QLLoaiSachDAO {
         ArrayList<QLLoaiSachDTO> arrSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM loaisach";
+            String query = "SELECT * FROM library.loaisach";
             ResultSet rs = DBSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -46,7 +46,7 @@ public class QLLoaiSachDAO {
     
     public Boolean add(QLLoaiSachDTO sach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("INSERT INTO loaisach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang, hinhSach) "
+        Boolean check = DBSach.SQLUpdate("INSERT INTO library.loaisach(maSach, tenSach, tenTacGia, tenNXB, namXB, theLoai, ngonNgu, tomTatNoiDung, giaTien, soTrang, hinhSach) "
                 + "VALUES ('"
                 + sach.getMaSach() + "', '"
                 + sach.getTenSach() + "', '"
@@ -65,7 +65,7 @@ public class QLLoaiSachDAO {
     
     public Boolean del(String maSach){
         DBSach = new DBConnection();
-        Boolean check = DBSach.SQLUpdate("DELETE FROM loaisach WHERE loaisach.maSach = '" + maSach + "'");
+        Boolean check = DBSach.SQLUpdate("DELETE FROM library.loaisach WHERE loaisach.maSach = '" + maSach + "'");
         DBSach.closeConnection();
         return check;
     }

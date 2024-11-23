@@ -15,7 +15,7 @@ public class QLAdminDAO {
         ArrayList<QLAdminDTO> arrAdmin = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM admin";
+            String query = "SELECT * FROM library.admin";
             ResultSet rs = DBAdmin.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -38,7 +38,7 @@ public class QLAdminDAO {
     
     public Boolean add(QLAdminDTO admin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("INSERT INTO admin(tkAdmin, password_hashed, salt) "
+        Boolean check = DBAdmin.SQLUpdate("INSERT INTO library.admin(tkAdmin, password_hashed, salt) "
                 + "VALUES ('"
                 + admin.getTkAdmin() + "', '"
                 + admin.getPassword() + "', '"
@@ -49,14 +49,14 @@ public class QLAdminDAO {
     
     public Boolean del(String tkAdmin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("DELETE FROM admin WHERE admin.tkAdmin = '" + tkAdmin + "'");
+        Boolean check = DBAdmin.SQLUpdate("DELETE FROM library.admin WHERE admin.tkAdmin = '" + tkAdmin + "'");
         DBAdmin.closeConnection();
         return check;
     }
     
     public Boolean mod(QLAdminDTO admin){
         DBAdmin = new DBConnection();
-        Boolean check = DBAdmin.SQLUpdate("Update admin Set "
+        Boolean check = DBAdmin.SQLUpdate("Update library.admin Set "
                 + "', password_hashed='" + admin.getTkAdmin()
                 + " where tkAdmin='" + admin.getPassword() + "'");
         DBAdmin.closeConnection();

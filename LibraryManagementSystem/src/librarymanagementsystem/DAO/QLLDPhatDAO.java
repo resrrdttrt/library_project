@@ -15,7 +15,7 @@ public class QLLDPhatDAO {
         ArrayList<QLLDPhatDTO> arrLDPhat = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM lydophat";
+            String query = "SELECT * FROM library.lydophat";
             ResultSet rs = DBLDPhat.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -38,7 +38,7 @@ public class QLLDPhatDAO {
     
     public Boolean add(QLLDPhatDTO LDPhat){
         DBLDPhat = new DBConnection();
-        Boolean check = DBLDPhat.SQLUpdate("INSERT INTO lydophat(maLDPhat, tenLDPhat, mucDo) "
+        Boolean check = DBLDPhat.SQLUpdate("INSERT INTO library.lydophat(maLDPhat, tenLDPhat, mucDo) "
                 + "VALUES ('"
                 + LDPhat.getMaLDPhat()+ "','"  
                 + LDPhat.getTenLDPhat()+ "','"  
@@ -48,14 +48,14 @@ public class QLLDPhatDAO {
     }
     
      public Boolean del(String maLDPhat){
-        Boolean check = DBLDPhat.SQLUpdate("DELETE FROM lydophat WHERE lydophat.maLDPhat = '" + maLDPhat + "';");
+        Boolean check = DBLDPhat.SQLUpdate("DELETE FROM library.lydophat WHERE lydophat.maLDPhat = '" + maLDPhat + "';");
         DBLDPhat.closeConnection();
         return check;
     }
     
     public Boolean mod(QLLDPhatDTO LDPhat){
         DBLDPhat = new DBConnection();
-        Boolean check = DBLDPhat.SQLUpdate("Update lydophat Set "
+        Boolean check = DBLDPhat.SQLUpdate("Update library.lydophat Set "
                 + " tenLDPhat='" + LDPhat.getTenLDPhat()
                 + "', mucDo='" + LDPhat.getMucDo()
                 + "' where maLDPhat='" + LDPhat.getMaLDPhat()+ "';");

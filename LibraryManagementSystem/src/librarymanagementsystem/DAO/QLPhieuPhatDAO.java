@@ -15,7 +15,7 @@ public class QLPhieuPhatDAO {
         ArrayList<QLPhieuPhatDTO> arrPhieuPhat = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM phieuphat";
+            String query = "SELECT * FROM library.phieuphat";
             ResultSet rs = DBPhieuPhat.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -39,7 +39,7 @@ public class QLPhieuPhatDAO {
     
     public Boolean add(QLPhieuPhatDTO phieuPhat){
         DBPhieuPhat = new DBConnection();
-        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO phieuphat(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat) "
+        Boolean check = DBPhieuPhat.SQLUpdate("INSERT INTO library.phieuphat(maPhieuPhat, maPhieuMuon, maLDPhat, tienPhat) "
                 + "VALUES ('"
                 + phieuPhat.getMaPhieuPhat()+ "','"  
                 + phieuPhat.getMaPhieuMuon()+ "','"  
@@ -50,14 +50,14 @@ public class QLPhieuPhatDAO {
     }
     
      public Boolean del(String maPhieuPhat){
-        Boolean check = DBPhieuPhat.SQLUpdate("DELETE FROM phieuphat WHERE phieuphat.maPhieuPhat = '" + maPhieuPhat + "';");
+        Boolean check = DBPhieuPhat.SQLUpdate("DELETE FROM library.phieuphat WHERE phieuphat.maPhieuPhat = '" + maPhieuPhat + "';");
         DBPhieuPhat.closeConnection();
         return check;
     }
     
     public Boolean mod(QLPhieuPhatDTO phieuPhat){
         DBPhieuPhat = new DBConnection();
-        Boolean check = DBPhieuPhat.SQLUpdate("Update phieuphat Set "
+        Boolean check = DBPhieuPhat.SQLUpdate("Update library.phieuphat Set "
                 + " maPhieuMuon='" + phieuPhat.getMaPhieuMuon()
                 + "', maLDPhat='" + phieuPhat.getMaLDPhat()
                 + "', tienPhat=" + phieuPhat.getTienPhat()

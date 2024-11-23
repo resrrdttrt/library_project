@@ -14,5 +14,11 @@ foreach ($file in Get-Content sources.txt) {
 
 java -cp "bin;src\librarymanagementsystem\lib\*" librarymanagementsystem.LibraryManagementSystem
 
+Install SQL server
+
+docker pull mcr.microsoft.com/mssql/server:2022-latest 
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Mysql@123" -p 1433:1433 --name sql1 --hostname sql1 -v sql_data:/var/opt/mssql -d mcr.microsoft.com/mssql/server:2022-latest
+
 
 

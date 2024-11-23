@@ -19,7 +19,7 @@ public class QLPhieuNhapDAO {
         try{
             HashMap<String, ArrayList <String> > hashmap = new HashMap<String, ArrayList <String> >();
             HashMap<String, ArrayList <Integer> > hashmap_2 = new HashMap<String, ArrayList <Integer> >();
-            String query_maSach = "SELECT * FROM chitietphieunhap";
+            String query_maSach = "SELECT * FROM library.chitietphieunhap";
             ResultSet rs_maSach = DBNhapKhoSach.SQLQuery(query_maSach);
             if (rs_maSach != null){
                 while (rs_maSach.next()){
@@ -49,7 +49,7 @@ public class QLPhieuNhapDAO {
                 }
             }
             
-            String query = "SELECT * FROM phieunhap";
+            String query = "SELECT * FROM library.phieunhap";
             ResultSet rs = DBNhapKhoSach.SQLQuery(query);
             
             if (rs != null){
@@ -81,7 +81,7 @@ public class QLPhieuNhapDAO {
         ArrayList<QLPhieuNhapDTO> arrNhapKho = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM phieunhap";
+            String query = "SELECT * FROM library.phieunhap";
             ResultSet rs = DBNhapKhoSach.SQLQuery(query);
             
             if (rs != null){
@@ -95,7 +95,7 @@ public class QLPhieuNhapDAO {
                     int tongSoLuong = rs.getInt("tongSoLuong");
                     int tongTien = rs.getInt("tongTien");
                     
-                    String query_chiTietPhieuNhap = "SELECT * FROM chitietphieunhap WHERE chitietphieunhap.maNhap = '"  + maNhap + "'";
+                    String query_chiTietPhieuNhap = "SELECT * FROM library.chitietphieunhap WHERE chitietphieunhap.maNhap = '"  + maNhap + "'";
                     ResultSet rs_chiTietPhieuNhap = DBNhapKhoSach.SQLQuery(query_chiTietPhieuNhap);
                     if (rs_chiTietPhieuNhap != null){
                         while (rs_chiTietPhieuNhap.next()){
@@ -119,7 +119,7 @@ public class QLPhieuNhapDAO {
     
     public Boolean add(QLPhieuNhapDTO nhapKho){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO phieunhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO library.phieunhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
                 + "VALUES ('"
                 + nhapKho.getMaNhap()+ "','"
                 + nhapKho.getNgayNhap()+ "','"
@@ -130,7 +130,7 @@ public class QLPhieuNhapDAO {
         
         Boolean check2 = true;
         for (int i=0; i<nhapKho.getMaSach().size(); i++){
-            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO chitietphieunhap(maNhap, maSach, soLuong) "
+            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO library.chitietphieunhap(maNhap, maSach, soLuong) "
                     + "VALUES ('"
                     + nhapKho.getMaNhap()+ "','"     
                     + nhapKho.getMaSach().get(i)+ "',"   
@@ -160,7 +160,7 @@ public class QLPhieuNhapDAO {
     
     public Boolean add(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO phieunhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("INSERT INTO library.phieunhap(maNhap, ngayNhap, maNhanVien, maNCC, tongSoLuong, tongTien) "
                 + "VALUES ('"
                 + maNhap+ "','"
                 + ngayNhap+ "','" 
@@ -171,7 +171,7 @@ public class QLPhieuNhapDAO {
         
         Boolean check2 = true;
         for (int i=0; i<maSach.size(); i++){
-            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO chitietphieunhap(maNhap, maSach, soLuong) "
+            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO library.chitietphieunhap(maNhap, maSach, soLuong) "
                     + "VALUES ('"
                     + maNhap+ "','"     
                     + maSach.get(i)+ "',"   
@@ -200,15 +200,15 @@ public class QLPhieuNhapDAO {
     
     public Boolean del(String maNhap){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("DELETE FROM phieunhap WHERE phieunhap.maNhap = '" + maNhap + "';");
-        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM chitietphieunhap WHERE chitietphieunhap.maNhap = '" + maNhap + "';");
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("DELETE FROM library.phieunhap WHERE phieunhap.maNhap = '" + maNhap + "';");
+        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM library.chitietphieunhap WHERE chitietphieunhap.maNhap = '" + maNhap + "';");
         DBNhapKhoSach.closeConnection();
         return check1 && check2 && new QLKhoSachDAO().refreshDB();
     }
     
     public Boolean mod(QLPhieuNhapDTO nhapKho){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("Update phieunhap Set "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("Update library.phieunhap Set "
                 + " ngayNhap='" + nhapKho.getNgayNhap()
                 + " maNhanVien='" + nhapKho.getMaNhanVien()
                 + " maNCC='" + nhapKho.getMaNCC()
@@ -216,9 +216,9 @@ public class QLPhieuNhapDAO {
                 + " tongTien='" + nhapKho.getTongTien()
                 + "' where maNhap='" + nhapKho.getMaNhap()+ "';");
         
-        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM chitietphieunhap WHERE chitietphieunhap.maNhap = '" + nhapKho.getMaNhap() + "';");
+        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM library.chitietphieunhap WHERE chitietphieunhap.maNhap = '" + nhapKho.getMaNhap() + "';");
         for (int i=0; i<nhapKho.getMaSach().size(); i++){
-            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO chitietphieunhap(maNhap, maSach, soLuong) "
+            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO library.chitietphieunhap(maNhap, maSach, soLuong) "
                     + "VALUES ('"
                     + nhapKho.getMaNhap()+ "','"     
                     + nhapKho.getMaSach().get(i)+ "',"   
@@ -233,7 +233,7 @@ public class QLPhieuNhapDAO {
     
     public Boolean mod(String maNhap, String ngayNhap, ArrayList <String> maSach, ArrayList <Integer> soLuong, String maNhanVien, String maNCC, int tongSoLuong, int tongTien){
         DBNhapKhoSach = new DBConnection();
-        Boolean check1 = DBNhapKhoSach.SQLUpdate("Update phieunhap Set "
+        Boolean check1 = DBNhapKhoSach.SQLUpdate("Update library.phieunhap Set "
                 + " ngayNhap='" + ngayNhap
                 + " maNhanVien='" + maNhanVien
                 + " maNCC='" + maNCC
@@ -241,9 +241,9 @@ public class QLPhieuNhapDAO {
                 + " tongTien='" + tongTien
                 + "' where maNhap='" + maNhap+ "';");
         
-        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM chitietphieunhap WHERE chitietphieunhap.maNhap = '" + maNhap + "';");
+        Boolean check2 = DBNhapKhoSach.SQLUpdate("DELETE FROM library.chitietphieunhap WHERE chitietphieunhap.maNhap = '" + maNhap + "';");
         for (int i=0; i<maSach.size(); i++){
-            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO chitietphieunhap(maNhap, maSach, soLuong) "
+            Boolean check = DBNhapKhoSach.SQLUpdate("INSERT INTO library.chitietphieunhap(maNhap, maSach, soLuong) "
                     + "VALUES ('"
                     + maNhap+ "','"     
                     + maSach.get(i)+ "',"   

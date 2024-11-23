@@ -15,7 +15,7 @@ public class QLNhanVienDAO {
         ArrayList<QLNhanVienDTO> arrNhanVien = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM nhanvien";
+            String query = "SELECT * FROM library.nhanvien";
             ResultSet rs = DBNhanVien.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -44,7 +44,7 @@ public class QLNhanVienDAO {
     
     public Boolean add(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
-        System.out.println("INSERT INTO nhanvien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
+        System.out.println("INSERT INTO library.nhanvien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
                 + "VALUES ('"
                 + nhanVien.getMaNhanVien()+ "','"     
                 + nhanVien.getPassword()+ "','"   
@@ -56,7 +56,7 @@ public class QLNhanVienDAO {
                 + nhanVien.getChucVu()+ "','"
 //                + new PasswordHashing().getSalt()+ "');");
                 + nhanVien.getSalt()+ "');");
-        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO nhanvien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
+        Boolean check = DBNhanVien.SQLUpdate("INSERT INTO library.nhanvien(maNhanVien, password_hashed, hoTen, ngaySinh, diaChi, sdt, email, chucVu, salt) "
                 + "VALUES ('"
                 + nhanVien.getMaNhanVien()+ "','"     
                 + nhanVien.getPassword()+ "','"   
@@ -73,14 +73,14 @@ public class QLNhanVienDAO {
     
      public Boolean del(String maNhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("DELETE FROM nhanvien WHERE nhanvien.maNhanVien = '" + maNhanVien + "'");
+        Boolean check = DBNhanVien.SQLUpdate("DELETE FROM library.nhanvien WHERE nhanvien.maNhanVien = '" + maNhanVien + "'");
         DBNhanVien.closeConnection();
         return check;
     }
     
     public Boolean mod(QLNhanVienDTO nhanVien){
         DBNhanVien = new DBConnection();
-        Boolean check = DBNhanVien.SQLUpdate("Update nhanvien Set "
+        Boolean check = DBNhanVien.SQLUpdate("Update library.nhanvien Set "
                 + " password_hashed='" + nhanVien.getPassword()
                 + "', hoTen='" + nhanVien.getHoTen()
                 + "', ngaySinh='" + nhanVien.getNgaySinh()

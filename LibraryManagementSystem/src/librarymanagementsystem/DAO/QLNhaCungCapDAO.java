@@ -15,7 +15,7 @@ public class QLNhaCungCapDAO {
         ArrayList<QLNhaCungCapDTO> arrNhaCungCap = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM nhacungcap";
+            String query = "SELECT * FROM library.nhacungcap";
             ResultSet rs = DBNhaCungCap.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -40,7 +40,7 @@ public class QLNhaCungCapDAO {
     
     public Boolean add(QLNhaCungCapDTO nhaCungCap){
         DBNhaCungCap = new DBConnection();
-        Boolean check = DBNhaCungCap.SQLUpdate("INSERT INTO nhacungcap(maNCC, tenNCC, sdt, email, diaChi) "
+        Boolean check = DBNhaCungCap.SQLUpdate("INSERT INTO library.nhacungcap(maNCC, tenNCC, sdt, email, diaChi) "
                 + "VALUES ('"
                 + nhaCungCap.getMaNCC()+ "','"  
                 + nhaCungCap.getTenNCC()+ "','"  
@@ -52,14 +52,14 @@ public class QLNhaCungCapDAO {
     }
     
      public Boolean del(String maNCC){
-        Boolean check = DBNhaCungCap.SQLUpdate("DELETE FROM nhacungcap WHERE nhacungcap.maNCC = '" + maNCC + "';");
+        Boolean check = DBNhaCungCap.SQLUpdate("DELETE FROM library.nhacungcap WHERE nhacungcap.maNCC = '" + maNCC + "';");
         DBNhaCungCap.closeConnection();
         return check;
     }
     
     public Boolean mod(QLNhaCungCapDTO nhaCungCap){
         DBNhaCungCap = new DBConnection();
-        Boolean check = DBNhaCungCap.SQLUpdate("Update nhacungcap Set "
+        Boolean check = DBNhaCungCap.SQLUpdate("Update library.nhacungcap Set "
                 + " tenNCC='" + nhaCungCap.getTenNCC()
                 + "', sdt='" + nhaCungCap.getSdt()
                 + "', email='" + nhaCungCap.getEmail()

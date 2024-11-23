@@ -13,7 +13,7 @@ public class QLQuyenDAO {
         ArrayList<QLQuyenDTO> arrQuyen = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM quyen";
+            String query = "SELECT * FROM library.quyen";
             ResultSet rs = DBQuyen.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -36,7 +36,7 @@ public class QLQuyenDAO {
     
     public Boolean add(QLQuyenDTO quyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("INSERT INTO quyen(maQuyen, tenQuyen, chitietQuyen) "
+        Boolean check = DBQuyen.SQLUpdate("INSERT INTO library.quyen(maQuyen, tenQuyen, chitietQuyen) "
                 + "VALUES ('"
                 + quyen.getMaQuyen() + "', '"
                 + quyen.getTenQuyen() + "', '"
@@ -47,14 +47,14 @@ public class QLQuyenDAO {
     
     public Boolean del(String maQuyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("DELETE FROM quyen WHERE quyen.maQuyen = '" + maQuyen + "'");
+        Boolean check = DBQuyen.SQLUpdate("DELETE FROM library.quyen WHERE quyen.maQuyen = '" + maQuyen + "'");
         DBQuyen.closeConnection();
         return check;
     }
     
     public Boolean mod(QLQuyenDTO quyen){
         DBQuyen = new DBConnection();
-        Boolean check = DBQuyen.SQLUpdate("Update quyen Set "
+        Boolean check = DBQuyen.SQLUpdate("Update library.quyen Set "
                 + " tenQuyen='" + quyen.getTenQuyen()
                 + "', chitietQuyen='" + quyen.getChitietQuyen()
                 + "' where maQuyen='" + quyen.getMaQuyen() + "'");

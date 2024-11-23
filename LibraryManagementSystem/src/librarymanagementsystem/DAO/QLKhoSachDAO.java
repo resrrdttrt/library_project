@@ -1,15 +1,15 @@
 package librarymanagementsystem.DAO;
 
-import librarymanagementsystem.Toolkit.*;
-import librarymanagementsystem.DTO.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 import librarymanagementsystem.BUS.QLKhoSachBUS;
 import librarymanagementsystem.BUS.QLPhieuNhapBUS;
 import librarymanagementsystem.BUS.QLPhieuXuatBUS;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import librarymanagementsystem.DTO.*;
+import librarymanagementsystem.Toolkit.*;
 
 public class QLKhoSachDAO {
     DBConnection DBKhoSach;
@@ -19,7 +19,7 @@ public class QLKhoSachDAO {
         ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM khosach";
+            String query = "SELECT * FROM library.khosach";
             ResultSet rs = DBKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -45,7 +45,7 @@ public class QLKhoSachDAO {
         ArrayList<QLKhoSachDTO> arrKhoSach = new ArrayList<>();
         
         try{
-            String query = "SELECT * FROM khosach, loaisach Where khosach.maSach = loaisach.maSach";
+            String query = "SELECT * FROM library.khosach, library.loaisach Where khosach.maSach = loaisach.maSach";
             ResultSet rs = DBKhoSach.SQLQuery(query);
             if (rs != null){
                 while (rs.next()){
@@ -78,7 +78,7 @@ public class QLKhoSachDAO {
     
     public Boolean add(QLKhoSachDTO khoSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("INSERT INTO khosach(maSach, soLuong) "
+        Boolean check = DBKhoSach.SQLUpdate("INSERT INTO library.khosach(maSach, soLuong) "
                 + "VALUES ('"
                 + khoSach.getMaSach()+ "',"       
                 + khoSach.getSoLuong()+ ");");
@@ -88,14 +88,14 @@ public class QLKhoSachDAO {
     
     public Boolean del(String maSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("DELETE FROM khosach WHERE khosach.maSach = '" + maSach + "';");
+        Boolean check = DBKhoSach.SQLUpdate("DELETE FROM library.khosach WHERE khosach.maSach = '" + maSach + "';");
         DBKhoSach.closeConnection();
         return check;
     }
     
     public Boolean mod(QLKhoSachDTO khoSach){
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("Update khosach Set "
+        Boolean check = DBKhoSach.SQLUpdate("Update library.khosach Set "
                 + " soLuong=" + khoSach.getSoLuong()
                 + " where maSach='" + khoSach.getMaSach()+ "';");
         DBKhoSach.closeConnection();
@@ -138,7 +138,7 @@ public class QLKhoSachDAO {
         }
         
         DBKhoSach = new DBConnection();
-        Boolean check = DBKhoSach.SQLUpdate("TRUNCATE TABLE khosach");
+        Boolean check = DBKhoSach.SQLUpdate("TRUNCATE TABLE library.khosach");
         DBKhoSach.closeConnection();
         if (!check){
             return check;
