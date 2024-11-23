@@ -6,7 +6,9 @@
             <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/GUI/WelcomeGUI.java</file>
             <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/DataProcessing.java</file>
             <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/Toolkit/DBConnection.java</file>
+            <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/DTO/QLAdminDTO.java</file>
             <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/GUI/LoginGUI.java</file>
+            <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/DAO/QLAdminDAO.java</file>
             <file>file:/D:/Study/Project/Java/Library-Management-System-Java/LibraryManagementSystem/src/librarymanagementsystem/LibraryManagementSystem.java</file>
         </group>
     </open-files>
