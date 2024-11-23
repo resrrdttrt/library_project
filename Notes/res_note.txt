@@ -1,0 +1,18 @@
+Linux
+
+javac -d bin -sourcepath src -cp "src/librarymanagementsystem/lib/*" src/**/*.java
+
+java -cp "bin:src/librarymanagementsystem/lib/*" librarymanagementsystem.LibraryManagementSystem
+
+Window
+
+Get-ChildItem -Recurse -Filter *.java -Path src | ForEach-Object { $_.FullName } > sources.txt
+
+foreach ($file in Get-Content sources.txt) {
+    javac -d bin -sourcepath src -cp "src/librarymanagementsystem/lib/*" $file
+}
+
+java -cp "bin;src\librarymanagementsystem\lib\*" librarymanagementsystem.LibraryManagementSystem
+
+
+
