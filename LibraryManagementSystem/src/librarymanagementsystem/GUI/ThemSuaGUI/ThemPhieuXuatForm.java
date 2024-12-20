@@ -101,7 +101,7 @@ public class ThemPhieuXuatForm extends javax.swing.JFrame{
         
         maNV_Label.setBackground(new java.awt.Color(245, 247, 250));
         maNV_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        maNV_Label.setText("dfgdfgdfg");
+        maNV_Label.setText("");
         maNV_Label.setBorder(null);
         maNV_Label.setOpaque(false);
         maNV_Label.setBounds(117, 105, 190, 30);

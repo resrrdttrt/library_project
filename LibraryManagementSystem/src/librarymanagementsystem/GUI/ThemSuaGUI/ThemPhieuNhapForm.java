@@ -240,18 +240,18 @@ public class ThemPhieuNhapForm extends javax.swing.JFrame{
             error_mess = "Ngày Nhập trống!!!";
             return false;
         }
-        if (dp.check_maQuanLy(maNV)){
-            error_mess = "Mã Nhân Viên nhập sai!!!";
-            return false;
-        }
-        if (dp.check_maNCC(maNCC)){
-            error_mess = "Mã Nhà Cung Cấp nhập sai!!!";
-            return false;
-        }
-        if (dp.check_ngaythangnam(ngayNhap)){
-            error_mess = "Ngày Nhập nhập sai!!!";
-            return false;
-        }
+        // if (dp.check_maQuanLy(maNV)){
+        //     error_mess = "Mã Nhân Viên nhập sai!!!";
+        //     return false;
+        // }
+        // if (dp.check_maNCC(maNCC)){
+        //     error_mess = "Mã Nhà Cung Cấp nhập sai!!!";
+        //     return false;
+        // }
+        // if (dp.check_ngaythangnam(ngayNhap)){
+        //     error_mess = "Ngày Nhập nhập sai!!!";
+        //     return false;
+        // }
         
         return true;
     }
@@ -289,6 +289,15 @@ public class ThemPhieuNhapForm extends javax.swing.JFrame{
         }
         return arrSL;
     }
+
+    private int getTongSoLuong() {
+        ArrayList<Integer> quantities = getSoLuong();
+        int sum = 0;
+        for (int quantity : quantities) {
+            sum += quantity; // Add each quantity to the sum
+        }
+        return sum; // Return the total sum
+    }
         
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
         String maNV = maNV_Label.getText();
@@ -301,7 +310,7 @@ public class ThemPhieuNhapForm extends javax.swing.JFrame{
         System.out.println(soLuong);
         if (check_input(maNV, maNCC, ngayNhap)){
             System.out.println("Nhập Thành Công");
-            if (pnBUS.add(maPhieuNhap, ngayNhap, maSach, soLuong, maNV, maNCC, 0, 0)){
+            if (pnBUS.add(maPhieuNhap, ngayNhap, maSach, soLuong, maNV, maNCC, getTongSoLuong(), getTongSoLuong()*19000)){
                 new AlertGUI(3, "Success", "Nhập Phiếu Nhập Thành Công!!!", "Quay Lại").setVisible(true);
                 this.dispose();
             }
